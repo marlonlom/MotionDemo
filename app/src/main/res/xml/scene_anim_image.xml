@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <!-- More code here -->
+  <ConstraintSet android:id="@+id/starting_set">
+    <Constraint android:id="@+id/actor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+    />
+  </ConstraintSet>
+  <ConstraintSet android:id="@+id/ending_set">
+    <Constraint android:id="@+id/actor"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+    />
+  </ConstraintSet>
+
+  <Transition
+      android:id="@+id/my_transition"
+      app:constraintSetStart="@+id/starting_set"
+      app:constraintSetEnd="@+id/ending_set"
+      app:duration="2000">
+    <!-- Before you start creating key frames though, you must add a KeyFrameSet element to the Transition element of your motion scene. -->
+    <KeyFrameSet android:id="@+id/my_keys">
+      <!-- KeyPosition frames are the ones that help you alter the shape of the path.  -->
+      <KeyPosition
+          app:target="@+id/actor"
+          app:framePosition="30"
+          app:percentX="0.45"/>
+      <KeyPosition
+          app:target="@+id/actor"
+          app:framePosition="50"
+          app:percentX="0.35"/>
+      <KeyPosition
+          app:target="@+id/actor"
+          app:framePosition="80"
+          app:percentX="1"/>
+      <!-- add keycycle for oscillations to the animation-->
+      <KeyCycle
+          app:target="@+id/actor"
+          app:framePosition="30"
+          android:rotation="50"
+          app:waveShape="sin"
+          app:wavePeriod="1"/>
+    </KeyFrameSet>
+  </Transition>
+
+</MotionScene>
